@@ -27,7 +27,7 @@ stderr = 'Finished `dev` profile [unoptimized + debuginfo] target(s) in XXs'
 diagnostics = []
 
 [stdout.files]
-"Literals.lean" = '''
+"literals.lean" = '''
 
 -- Experimental lean backend for Hax
 -- The Hax prelude library can be found in hax/proof-libs/lean
@@ -41,217 +41,218 @@ open Std.Tactic
 set_option mvcgen.warning false
 set_option linter.unusedVariables false
 
-def Literals.math_integers (x : Hax_lib.Int.Int) : RustM u8 := do
-  let _ : Hax_lib.Int.Int ← (Rust_primitives.Hax.Int.from_machine (3 : usize));
-  let _neg_dec : Hax_lib.Int.Int ←
-    (Hax_lib.Int.Impl_7._unsafe_from_str
+
+namespace literals
+
+def math_integers (x : hax_lib.int.Int) : RustM u8 := do
+  let _ : hax_lib.int.Int ← (rust_primitives.hax.int.from_machine (3 : usize));
+  let _neg_dec : hax_lib.int.Int ←
+    (hax_lib.int.Impl_7._unsafe_from_str
       "-340282366920938463463374607431768211455000");
-  let _pos_dec : Hax_lib.Int.Int ←
-    (Hax_lib.Int.Impl_7._unsafe_from_str
+  let _pos_dec : hax_lib.int.Int ←
+    (hax_lib.int.Impl_7._unsafe_from_str
       "340282366920938463463374607431768211455000");
-  let _neg_hex : Hax_lib.Int.Int ←
-    (Hax_lib.Int.Impl_7._unsafe_from_str
+  let _neg_hex : hax_lib.int.Int ←
+    (hax_lib.int.Impl_7._unsafe_from_str
       "-340282366920938463463374607431768211455000");
-  let _pos_hex : Hax_lib.Int.Int ←
-    (Hax_lib.Int.Impl_7._unsafe_from_str
+  let _pos_hex : hax_lib.int.Int ←
+    (hax_lib.int.Impl_7._unsafe_from_str
       "340282366920938463463374607431768211455000");
-  let _neg_octal : Hax_lib.Int.Int ←
-    (Hax_lib.Int.Impl_7._unsafe_from_str
+  let _neg_octal : hax_lib.int.Int ←
+    (hax_lib.int.Impl_7._unsafe_from_str
       "-340282366920938463463374607431768211455000");
-  let _pos_octal : Hax_lib.Int.Int ←
-    (Hax_lib.Int.Impl_7._unsafe_from_str
+  let _pos_octal : hax_lib.int.Int ←
+    (hax_lib.int.Impl_7._unsafe_from_str
       "340282366920938463463374607431768211455000");
-  let _neg_bin : Hax_lib.Int.Int ←
-    (Hax_lib.Int.Impl_7._unsafe_from_str
+  let _neg_bin : hax_lib.int.Int ←
+    (hax_lib.int.Impl_7._unsafe_from_str
       "-340282366920938463463374607431768211455000");
-  let _pos_bin : Hax_lib.Int.Int ←
-    (Hax_lib.Int.Impl_7._unsafe_from_str
+  let _pos_bin : hax_lib.int.Int ←
+    (hax_lib.int.Impl_7._unsafe_from_str
       "340282366920938463463374607431768211455000");
   let _ ←
-    (Rust_primitives.Hax.Int.gt
-      (← (Hax_lib.Int.Impl_7._unsafe_from_str
+    (rust_primitives.hax.int.gt
+      (← (hax_lib.int.Impl_7._unsafe_from_str
         "-340282366920938463463374607431768211455000"))
-      (← (Hax_lib.Int.Impl_7._unsafe_from_str
+      (← (hax_lib.int.Impl_7._unsafe_from_str
         "340282366920938463463374607431768211455000")));
-  let _ ← (Rust_primitives.Hax.Int.lt x x);
-  let _ ← (Rust_primitives.Hax.Int.ge x x);
-  let _ ← (Rust_primitives.Hax.Int.le x x);
-  let _ ← (Rust_primitives.Hax.Int.ne x x);
-  let _ ← (Rust_primitives.Hax.Int.eq x x);
-  let _ ← (Rust_primitives.Hax.Int.add x x);
-  let _ ← (Rust_primitives.Hax.Int.sub x x);
-  let _ ← (Rust_primitives.Hax.Int.mul x x);
-  let _ ← (Rust_primitives.Hax.Int.div x x);
-  let _ : i16 ← (Hax_lib.Int.Impl_55.to_i16 x);
-  let _ : i32 ← (Hax_lib.Int.Impl_57.to_i32 x);
-  let _ : i64 ← (Hax_lib.Int.Impl_59.to_i64 x);
-  let _ : i128 ← (Hax_lib.Int.Impl_61.to_i128 x);
-  let _ : isize ← (Hax_lib.Int.Impl_63.to_isize x);
-  let _ : u16 ← (Hax_lib.Int.Impl_43.to_u16 x);
-  let _ : u32 ← (Hax_lib.Int.Impl_45.to_u32 x);
-  let _ : u64 ← (Hax_lib.Int.Impl_47.to_u64 x);
-  let _ : u128 ← (Hax_lib.Int.Impl_49.to_u128 x);
-  let _ : usize ← (Hax_lib.Int.Impl_51.to_usize x);
-  (Hax_lib.Int.Impl_41.to_u8
-    (← (Rust_primitives.Hax.Int.add x (← (Rust_primitives.Hax.Int.mul x x)))))
+  let _ ← (rust_primitives.hax.int.lt x x);
+  let _ ← (rust_primitives.hax.int.ge x x);
+  let _ ← (rust_primitives.hax.int.le x x);
+  let _ ← (rust_primitives.hax.int.ne x x);
+  let _ ← (rust_primitives.hax.int.eq x x);
+  let _ ← (rust_primitives.hax.int.add x x);
+  let _ ← (rust_primitives.hax.int.sub x x);
+  let _ ← (rust_primitives.hax.int.mul x x);
+  let _ ← (rust_primitives.hax.int.div x x);
+  let _ : i16 ← (hax_lib.int.Impl_55.to_i16 x);
+  let _ : i32 ← (hax_lib.int.Impl_57.to_i32 x);
+  let _ : i64 ← (hax_lib.int.Impl_59.to_i64 x);
+  let _ : i128 ← (hax_lib.int.Impl_61.to_i128 x);
+  let _ : isize ← (hax_lib.int.Impl_63.to_isize x);
+  let _ : u16 ← (hax_lib.int.Impl_43.to_u16 x);
+  let _ : u32 ← (hax_lib.int.Impl_45.to_u32 x);
+  let _ : u64 ← (hax_lib.int.Impl_47.to_u64 x);
+  let _ : u128 ← (hax_lib.int.Impl_49.to_u128 x);
+  let _ : usize ← (hax_lib.int.Impl_51.to_usize x);
+  (hax_lib.int.Impl_41.to_u8
+    (← (rust_primitives.hax.int.add x (← (rust_primitives.hax.int.mul x x)))))
 
-@[spec]
-def Literals.math_integers.spec (x : Hax_lib.Int.Int)  :
+set_option hax_mvcgen.specset "bv" in
+@[hax_spec]
+def math_integers.spec (x : hax_lib.int.Int) :
     Spec
-      (requires :=
-        (Rust_primitives.Hax.logical_op_and
-          (← (Rust_primitives.Hax.Int.gt
+      (requires := do
+        ((← (rust_primitives.hax.int.gt
             x
-            (← (Hax_lib.Int.Impl_7._unsafe_from_str "0"))))
-          (← (Rust_primitives.Hax.Int.lt
+            (← (hax_lib.int.Impl_7._unsafe_from_str "0"))))
+          &&? (← (rust_primitives.hax.int.lt
             x
-            (← (Hax_lib.Int.Impl_7._unsafe_from_str "16"))))))
+            (← (hax_lib.int.Impl_7._unsafe_from_str "16"))))))
       (ensures := fun _ => pure True)
-      (Literals.math_integers (x : Hax_lib.Int.Int) ) := {
-  pureRequires := by constructor; mvcgen <;> try grind
-  pureEnsures := by constructor; intros; mvcgen <;> try grind
-  contract := by mvcgen[Literals.math_integers] <;> try grind
+      (math_integers (x : hax_lib.int.Int)) := {
+  pureRequires := by hax_construct_pure <;> bv_decide
+  pureEnsures := by hax_construct_pure <;> bv_decide
+  contract := by hax_mvcgen [math_integers] <;> bv_decide
 }
 
-def Literals.panic_with_msg
-  (_ : Rust_primitives.Hax.Tuple0)
-  : RustM Rust_primitives.Hax.Tuple0
-  := do
-  (Rust_primitives.Hax.never_to_any
-    (← (Core.Panicking.panic_fmt
-      (← (Core.Fmt.Rt.Impl_1.new_const ((1 : usize)) #v["with msg"])))))
+@[spec]
+def panic_with_msg (_ : rust_primitives.hax.Tuple0) :
+    RustM rust_primitives.hax.Tuple0 := do
+  (rust_primitives.hax.never_to_any
+    (← (core_models.panicking.panic_fmt
+      (← (core_models.fmt.rt.Impl_1.new_const ((1 : usize))
+        (RustArray.ofVec #v["with msg"]))))))
 
-structure Literals.Foo where
+structure Foo where
   field : u8
 
-instance Literals.Impl.AssociatedTypes :
-  Core.Marker.StructuralPartialEq.AssociatedTypes Literals.Foo
-  where
+@[instance] opaque Impl.AssociatedTypes :
+  core_models.marker.StructuralPartialEq.AssociatedTypes Foo :=
+  by constructor <;> exact Inhabited.default
 
-instance Literals.Impl : Core.Marker.StructuralPartialEq Literals.Foo where
+@[instance] opaque Impl :
+  core_models.marker.StructuralPartialEq Foo :=
+  by constructor <;> exact Inhabited.default
 
-instance Literals.Impl_1.AssociatedTypes :
-  Core.Cmp.PartialEq.AssociatedTypes Literals.Foo Literals.Foo
-  where
+@[instance] opaque Impl_1.AssociatedTypes :
+  core_models.cmp.PartialEq.AssociatedTypes Foo Foo :=
+  by constructor <;> exact Inhabited.default
 
-instance Literals.Impl_1 : Core.Cmp.PartialEq Literals.Foo Literals.Foo where
+@[instance] opaque Impl_1 :
+  core_models.cmp.PartialEq Foo Foo :=
+  by constructor <;> exact Inhabited.default
 
-instance Literals.Impl_2.AssociatedTypes :
-  Core.Cmp.Eq.AssociatedTypes Literals.Foo
-  where
+@[instance] opaque Impl_2.AssociatedTypes :
+  core_models.cmp.Eq.AssociatedTypes Foo :=
+  by constructor <;> exact Inhabited.default
 
-instance Literals.Impl_2 : Core.Cmp.Eq Literals.Foo where
+@[instance] opaque Impl_2 :
+  core_models.cmp.Eq Foo :=
+  by constructor <;> exact Inhabited.default
 
-def Literals.CONSTANT : Literals.Foo :=
-  RustM.of_isOk (do (pure (Literals.Foo.mk (field := (3 : u8))))) (by rfl)
+def CONSTANT : Foo := RustM.of_isOk (do (Foo.mk (field := (3 : u8)))) (by rfl)
 
-def Literals.numeric
-  (_ : Rust_primitives.Hax.Tuple0)
-  : RustM Rust_primitives.Hax.Tuple0
-  := do
+@[spec]
+def numeric (_ : rust_primitives.hax.Tuple0) :
+    RustM rust_primitives.hax.Tuple0 := do
   let _ : usize := (123 : usize);
   let _ : isize := (-42 : isize);
   let _ : isize := (42 : isize);
   let _ : i32 := (-42 : i32);
   let _ : u128 := (22222222222222222222 : u128);
-  (pure Rust_primitives.Hax.Tuple0.mk)
+  (pure rust_primitives.hax.Tuple0.mk)
 
-def Literals.patterns
-  (_ : Rust_primitives.Hax.Tuple0)
-  : RustM Rust_primitives.Hax.Tuple0
-  := do
+@[spec]
+def patterns (_ : rust_primitives.hax.Tuple0) :
+    RustM rust_primitives.hax.Tuple0 := do
   let _ ←
     match (1 : u8) with
-      | 2 => (pure Rust_primitives.Hax.Tuple0.mk)
-      | _ => (pure Rust_primitives.Hax.Tuple0.mk);
+      | 2 => do (pure rust_primitives.hax.Tuple0.mk)
+      | _ => do (pure rust_primitives.hax.Tuple0.mk);
   let _ ←
     match
-      (Rust_primitives.Hax.Tuple2.mk
-        "hello" (Rust_primitives.Hax.Tuple2.mk (123 : i32) #v["a", "b"]))
+      (rust_primitives.hax.Tuple2.mk
+        "hello"
+        (rust_primitives.hax.Tuple2.mk
+          (123 : i32)
+          (RustArray.ofVec #v["a", "b"])))
     with
-      | ⟨"hello", ⟨123, _todo⟩⟩ => (pure Rust_primitives.Hax.Tuple0.mk)
-      | _ => (pure Rust_primitives.Hax.Tuple0.mk);
+      | ⟨"hello", ⟨123, _todo⟩⟩ => do (pure rust_primitives.hax.Tuple0.mk)
+      | _ => do (pure rust_primitives.hax.Tuple0.mk);
   let _ ←
-    match (Literals.Foo.mk (field := (4 : u8))) with
-      | {field := 3} => (pure Rust_primitives.Hax.Tuple0.mk)
-      | _ => (pure Rust_primitives.Hax.Tuple0.mk);
-  (pure Rust_primitives.Hax.Tuple0.mk)
+    match (Foo.mk (field := (4 : u8))) with
+      | {field := 3} => do (pure rust_primitives.hax.Tuple0.mk)
+      | _ => do (pure rust_primitives.hax.Tuple0.mk);
+  (pure rust_primitives.hax.Tuple0.mk)
 
-def Literals.casts
-  (x8 : u8)
-  (x16 : u16)
-  (x32 : u32)
-  (x64 : u64)
-  (xs : usize)
-  : RustM Rust_primitives.Hax.Tuple0
-  := do
+@[spec]
+def casts (x8 : u8) (x16 : u16) (x32 : u32) (x64 : u64) (xs : usize) :
+    RustM rust_primitives.hax.Tuple0 := do
   let _ : u64 ←
-    ((← ((← ((← ((← (Rust_primitives.Hax.cast_op x8))
-            +? (← (Rust_primitives.Hax.cast_op x16))))
-          +? (← (Rust_primitives.Hax.cast_op x32))))
+    ((← ((← ((← ((← (rust_primitives.hax.cast_op x8 : RustM u64))
+            +? (← (rust_primitives.hax.cast_op x16 : RustM u64))))
+          +? (← (rust_primitives.hax.cast_op x32 : RustM u64))))
         +? x64))
-      +? (← (Rust_primitives.Hax.cast_op xs)));
+      +? (← (rust_primitives.hax.cast_op xs : RustM u64)));
   let _ : u32 ←
-    ((← ((← ((← ((← (Rust_primitives.Hax.cast_op x8))
-            +? (← (Rust_primitives.Hax.cast_op x16))))
+    ((← ((← ((← ((← (rust_primitives.hax.cast_op x8 : RustM u32))
+            +? (← (rust_primitives.hax.cast_op x16 : RustM u32))))
           +? x32))
-        +? (← (Rust_primitives.Hax.cast_op x64))))
-      +? (← (Rust_primitives.Hax.cast_op xs)));
+        +? (← (rust_primitives.hax.cast_op x64 : RustM u32))))
+      +? (← (rust_primitives.hax.cast_op xs : RustM u32)));
   let _ : u16 ←
-    ((← ((← ((← ((← (Rust_primitives.Hax.cast_op x8)) +? x16))
-          +? (← (Rust_primitives.Hax.cast_op x32))))
-        +? (← (Rust_primitives.Hax.cast_op x64))))
-      +? (← (Rust_primitives.Hax.cast_op xs)));
+    ((← ((← ((← ((← (rust_primitives.hax.cast_op x8 : RustM u16)) +? x16))
+          +? (← (rust_primitives.hax.cast_op x32 : RustM u16))))
+        +? (← (rust_primitives.hax.cast_op x64 : RustM u16))))
+      +? (← (rust_primitives.hax.cast_op xs : RustM u16)));
   let _ : u8 ←
-    ((← ((← ((← (x8 +? (← (Rust_primitives.Hax.cast_op x16))))
-          +? (← (Rust_primitives.Hax.cast_op x32))))
-        +? (← (Rust_primitives.Hax.cast_op x64))))
-      +? (← (Rust_primitives.Hax.cast_op xs)));
+    ((← ((← ((← (x8 +? (← (rust_primitives.hax.cast_op x16 : RustM u8))))
+          +? (← (rust_primitives.hax.cast_op x32 : RustM u8))))
+        +? (← (rust_primitives.hax.cast_op x64 : RustM u8))))
+      +? (← (rust_primitives.hax.cast_op xs : RustM u8)));
   let _ : i64 ←
-    ((← ((← ((← ((← (Rust_primitives.Hax.cast_op x8))
-            +? (← (Rust_primitives.Hax.cast_op x16))))
-          +? (← (Rust_primitives.Hax.cast_op x32))))
-        +? (← (Rust_primitives.Hax.cast_op x64))))
-      +? (← (Rust_primitives.Hax.cast_op xs)));
+    ((← ((← ((← ((← (rust_primitives.hax.cast_op x8 : RustM i64))
+            +? (← (rust_primitives.hax.cast_op x16 : RustM i64))))
+          +? (← (rust_primitives.hax.cast_op x32 : RustM i64))))
+        +? (← (rust_primitives.hax.cast_op x64 : RustM i64))))
+      +? (← (rust_primitives.hax.cast_op xs : RustM i64)));
   let _ : i32 ←
-    ((← ((← ((← ((← (Rust_primitives.Hax.cast_op x8))
-            +? (← (Rust_primitives.Hax.cast_op x16))))
-          +? (← (Rust_primitives.Hax.cast_op x32))))
-        +? (← (Rust_primitives.Hax.cast_op x64))))
-      +? (← (Rust_primitives.Hax.cast_op xs)));
+    ((← ((← ((← ((← (rust_primitives.hax.cast_op x8 : RustM i32))
+            +? (← (rust_primitives.hax.cast_op x16 : RustM i32))))
+          +? (← (rust_primitives.hax.cast_op x32 : RustM i32))))
+        +? (← (rust_primitives.hax.cast_op x64 : RustM i32))))
+      +? (← (rust_primitives.hax.cast_op xs : RustM i32)));
   let _ : i16 ←
-    ((← ((← ((← ((← (Rust_primitives.Hax.cast_op x8))
-            +? (← (Rust_primitives.Hax.cast_op x16))))
-          +? (← (Rust_primitives.Hax.cast_op x32))))
-        +? (← (Rust_primitives.Hax.cast_op x64))))
-      +? (← (Rust_primitives.Hax.cast_op xs)));
+    ((← ((← ((← ((← (rust_primitives.hax.cast_op x8 : RustM i16))
+            +? (← (rust_primitives.hax.cast_op x16 : RustM i16))))
+          +? (← (rust_primitives.hax.cast_op x32 : RustM i16))))
+        +? (← (rust_primitives.hax.cast_op x64 : RustM i16))))
+      +? (← (rust_primitives.hax.cast_op xs : RustM i16)));
   let _ : i8 ←
-    ((← ((← ((← ((← (Rust_primitives.Hax.cast_op x8))
-            +? (← (Rust_primitives.Hax.cast_op x16))))
-          +? (← (Rust_primitives.Hax.cast_op x32))))
-        +? (← (Rust_primitives.Hax.cast_op x64))))
-      +? (← (Rust_primitives.Hax.cast_op xs)));
-  (pure Rust_primitives.Hax.Tuple0.mk)
+    ((← ((← ((← ((← (rust_primitives.hax.cast_op x8 : RustM i8))
+            +? (← (rust_primitives.hax.cast_op x16 : RustM i8))))
+          +? (← (rust_primitives.hax.cast_op x32 : RustM i8))))
+        +? (← (rust_primitives.hax.cast_op x64 : RustM i8))))
+      +? (← (rust_primitives.hax.cast_op xs : RustM i8)));
+  (pure rust_primitives.hax.Tuple0.mk)
 
-def Literals.empty_array
-  (_ : Rust_primitives.Hax.Tuple0)
-  : RustM Rust_primitives.Hax.Tuple0
-  := do
-  let _ : (RustSlice u8) ← (Rust_primitives.unsize #v[]);
-  (pure Rust_primitives.Hax.Tuple0.mk)
+@[spec]
+def empty_array (_ : rust_primitives.hax.Tuple0) :
+    RustM rust_primitives.hax.Tuple0 := do
+  let _ : (RustSlice u8) ← (rust_primitives.unsize (RustArray.ofVec #v[]));
+  (pure rust_primitives.hax.Tuple0.mk)
 
 --  https://github.com/hacspec/hax/issues/500
-def Literals.fn_pointer_cast
-  (_ : Rust_primitives.Hax.Tuple0)
-  : RustM Rust_primitives.Hax.Tuple0
-  := do
+@[spec]
+def fn_pointer_cast (_ : rust_primitives.hax.Tuple0) :
+    RustM rust_primitives.hax.Tuple0 := do
   let f : (u32 -> RustM u32) := (fun x => (do (pure x) : RustM u32));
-  (pure Rust_primitives.Hax.Tuple0.mk)
+  (pure rust_primitives.hax.Tuple0.mk)
 
-def Literals.strings
-  (_ : Rust_primitives.Hax.Tuple0)
-  : RustM Rust_primitives.Hax.Tuple0
-  := do
+@[spec]
+def strings (_ : rust_primitives.hax.Tuple0) :
+    RustM rust_primitives.hax.Tuple0 := do
   let _ : String := "hello";
   let _ : String := "hello\"world";
   let _ : String := "it\'s";
@@ -263,4 +264,8 @@ def Literals.strings
   let _ : String := "bell\x07char";
   let _ : String := "\x1b[0m";
   let _ : String := "🦀";
-  (pure Rust_primitives.Hax.Tuple0.mk)'''
+  (pure rust_primitives.hax.Tuple0.mk)
+
+end literals
+
+'''
