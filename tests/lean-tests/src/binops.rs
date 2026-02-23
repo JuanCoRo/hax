@@ -54,6 +54,10 @@ fn eq_int(x : i32, y: i32) -> bool { x == y }
 
 fn eq_bool(x : bool, y: bool) -> bool { x == y }
 
+fn neq_int (x : i32, y: i32) -> bool { x != y }
+
+fn neq_bool(x : bool, y: bool) -> bool { x != y }
+
 fn lt_int(x : i32, y: i32) -> bool { x < y }
 
 fn le_int(x : i32, y: i32) -> bool { x <= y }
