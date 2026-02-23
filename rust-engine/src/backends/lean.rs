@@ -932,7 +932,9 @@ const _: () = {
                                 | binops::lt
                                 | binops::le
                                 | binops::gt
-                                | binops::ge),
+                                | binops::ge
+                                | binops::ne
+                                | binops::PartialEq::ne),
                             ),
                         ) if (lhs.ty == Ty::bool() && rhs.ty == Ty::bool())
                             || (rhs.ty.is_int() && lhs.ty.is_int()) =>
@@ -959,6 +961,8 @@ const _: () = {
                                 binops::le => "<=?",
                                 binops::gt => ">?",
                                 binops::ge => ">=?",
+                                binops::ne => "!=?",
+                                binops::PartialEq::ne => "!=?",
                                 _ => unreachable!(),
                             };
                             docs![lhs, line!(), docs![symbol, softline!(), rhs].group()]

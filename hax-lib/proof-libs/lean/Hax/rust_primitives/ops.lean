@@ -57,6 +57,7 @@ infixl:80 " <=? "  => fun a b => pure (decide (a <= b))
 infixl:80 " >? "   => fun a b => pure (decide (a > b))
 infixl:80 " >=? "  => fun a b => pure (decide (a >= b))
 infixl:80 " ==? "  => fun a b => pure (a == b)
+infixl:80 " !=? "  => fun a b => pure (a != b)
 prefix:75 "~?"     => fun a => pure (~~~a)
 
 set_option linter.unusedVariables false in
