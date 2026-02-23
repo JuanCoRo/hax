@@ -191,6 +191,12 @@ def eq_int (x : i32) (y : i32) : RustM Bool := do (x ==? y)
 def eq_bool (x : Bool) (y : Bool) : RustM Bool := do (x ==? y)
 
 @[spec]
+def neq_int (x : i32) (y : i32) : RustM Bool := do (x !=? y)
+
+@[spec]
+def neq_bool (x : Bool) (y : Bool) : RustM Bool := do (x !=? y)
+
+@[spec]
 def lt_int (x : i32) (y : i32) : RustM Bool := do (x <? y)
 
 @[spec]
