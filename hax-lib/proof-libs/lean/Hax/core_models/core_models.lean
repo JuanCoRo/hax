@@ -2738,8 +2738,7 @@ instance Impl_1
   where
   next := fun (self : (Take I)) => do
     let ⟨self, hax_temp_output⟩ ←
-      if
-      (← (rust_primitives.hax.machine_int.ne (Take.n self) (0 : usize))) then do
+      if (← ((Take.n self) !=? (0 : usize))) then do
         let self : (Take I) :=
           {self with n := (← ((Take.n self) -? (1 : usize)))};
         let ⟨tmp0, out⟩ ←
