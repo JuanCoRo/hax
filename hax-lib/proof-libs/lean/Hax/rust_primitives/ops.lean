@@ -82,7 +82,7 @@ infixl:80 " <=? "  => rust_primitives.cmp.le
 infixl:80 " >? "   => rust_primitives.cmp.gt
 infixl:80 " >=? "  => rust_primitives.cmp.ge
 
-attribute [spec 100]
+attribute [spec 100, specset bv, hax_bv_decide]
 rust_primitives.cmp.eq
 rust_primitives.cmp.ne
 rust_primitives.cmp.lt
