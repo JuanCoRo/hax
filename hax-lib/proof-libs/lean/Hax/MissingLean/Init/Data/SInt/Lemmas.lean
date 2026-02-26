@@ -3,16 +3,6 @@ attribute [grind =_] Int16.ofNat_le_iff_le
 attribute [grind =_] Int32.ofNat_le_iff_le
 attribute [grind =_] Int64.ofNat_le_iff_le
 
-attribute [grind =] Int8.le_iff_toInt_le
-attribute [grind =] Int16.le_iff_toInt_le
-attribute [grind =] Int32.le_iff_toInt_le
-attribute [grind =] Int64.le_iff_toInt_le
-
-attribute [grind =] Int8.lt_iff_toInt_lt
-attribute [grind =] Int16.lt_iff_toInt_lt
-attribute [grind =] Int32.lt_iff_toInt_lt
-attribute [grind =] Int64.lt_iff_toInt_lt
-
 attribute [grind =] Int8.ofNat_toNatClampNeg
 attribute [grind =] Int16.ofNat_toNatClampNeg
 attribute [grind =] Int32.ofNat_toNatClampNeg
