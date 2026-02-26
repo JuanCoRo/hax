@@ -27,7 +27,7 @@ stderr = 'Finished `dev` profile [unoptimized + debuginfo] target(s) in XXs'
 diagnostics = []
 
 [stdout.files]
-"lean_tests.lean" = '''
+"lean_tests.lean" = """
 
 -- Experimental lean backend for Hax
 -- The Hax prelude library can be found in hax/proof-libs/lean
@@ -254,7 +254,7 @@ def casting_edge_cases (_dummy : Bool) : RustM Bool := do
       ==? (-1 : i32));
   ((← ((← ((← (case1 &&? case2)) &&? case3)) &&? case4)) &&? case5)
 
-set_option hax_mvcgen.specset "bv" in
+set_option hax_mvcgen.specset \"bv\" in
 @[hax_spec]
 def casting_edge_cases.spec (_dummy : Bool) :
     Spec
@@ -510,7 +510,7 @@ def for_loop_with_spec (y : u64) : RustM u64 := do
         RustM u64)));
   (pure x)
 
-set_option hax_mvcgen.specset "bv" in
+set_option hax_mvcgen.specset \"bv\" in
 @[hax_spec]
 def for_loop_with_spec.spec (y : u64) :
     Spec
@@ -535,7 +535,7 @@ def while_loop1 (s : u32) : RustM u32 := do
       (fun x => (do let x : u32 ← (x -? (1 : u32)); (pure x) : RustM u32)));
   (pure x)
 
-set_option hax_mvcgen.specset "int" in
+set_option hax_mvcgen.specset \"int\" in
 @[hax_spec]
 def while_loop1.spec (s : u32) :
     Spec
@@ -640,7 +640,7 @@ def test_const_matching (x : u32) (c : Char) (s : String) (b : Bool) :
   let c : u32 ←
     match c with | 'a' => do (pure (42 : u32)) | _ => do (pure (0 : u32));
   let s : u32 ←
-    match s with | "Hello" => do (pure (42 : u32)) | _ => do (pure (0 : u32));
+    match s with | \"Hello\" => do (pure (42 : u32)) | _ => do (pure (0 : u32));
   let b : u32 ←
     match b with | true => do (pure (42 : u32)) | false => do (pure (0 : u32));
   ((← ((← (x +? c)) +? s)) +? b)
@@ -843,7 +843,7 @@ namespace lean_tests.specs
 
 def test (x : u8) : RustM u8 := do (pure x)
 
-set_option hax_mvcgen.specset "bv" in
+set_option hax_mvcgen.specset \"bv\" in
 @[hax_spec]
 def test.spec (x : u8) :
     Spec
@@ -857,7 +857,7 @@ def test.spec (x : u8) :
 
 def use_previous_result (x : u8) : RustM u8 := do (test x)
 
-set_option hax_mvcgen.specset "bv" in
+set_option hax_mvcgen.specset \"bv\" in
 @[hax_spec]
 def use_previous_result.spec (x : u8) :
     Spec
@@ -871,7 +871,7 @@ def use_previous_result.spec (x : u8) :
 
 def test_proof (x : u8) : RustM u8 := do (pure x)
 
-set_option hax_mvcgen.specset "bv" in
+set_option hax_mvcgen.specset \"bv\" in
 @[hax_spec]
 def test_proof.spec (x : u8) :
     Spec
@@ -885,7 +885,7 @@ def test_proof.spec (x : u8) :
 
 def square (x : u8) : RustM u8 := do (x *? x)
 
-set_option hax_mvcgen.specset "bv" in
+set_option hax_mvcgen.specset \"bv\" in
 @[hax_spec]
 def square.spec (x : u8) :
     Spec
@@ -899,7 +899,7 @@ def square.spec (x : u8) :
 
 def forall_and_exists (x : u8) : RustM u8 := do (pure x)
 
-set_option hax_mvcgen.specset "int" in
+set_option hax_mvcgen.specset \"int\" in
 @[hax_spec]
 def forall_and_exists.spec (x : u8) :
     Spec
@@ -935,7 +935,7 @@ def fn_without_args (_ : rust_primitives.hax.Tuple0) :
     RustM rust_primitives.hax.Tuple0 := do
   (pure rust_primitives.hax.Tuple0.mk)
 
-set_option hax_mvcgen.specset "bv" in
+set_option hax_mvcgen.specset \"bv\" in
 @[hax_spec]
 def fn_without_args.spec (_ : rust_primitives.hax.Tuple0) :
     Spec
@@ -961,7 +961,7 @@ def Impl.test (self : T) : RustM Bool := do (pure true)
 def Impl.func (self : T) : RustM rust_primitives.hax.Tuple0 := do
   (pure rust_primitives.hax.Tuple0.mk)
 
-set_option hax_mvcgen.specset "bv" in
+set_option hax_mvcgen.specset \"bv\" in
 @[hax_spec]
 def Impl.func.spec (self : T) :
     Spec
@@ -981,7 +981,7 @@ namespace lean_tests.specs
 def custom_pure_proofs (x : u8) : RustM rust_primitives.hax.Tuple0 := do
   (pure rust_primitives.hax.Tuple0.mk)
 
-set_option hax_mvcgen.specset "bv" in
+set_option hax_mvcgen.specset \"bv\" in
 @[hax_spec]
 def custom_pure_proofs.spec (x : u8) :
     Spec
@@ -1000,7 +1000,7 @@ namespace lean_tests.specs.issue_1945
 
 def mktuple (a : i32) : RustM Bool := do let x : i32 := a; (a ==? (0 : i32))
 
-set_option hax_mvcgen.specset "bv" in
+set_option hax_mvcgen.specset \"bv\" in
 @[hax_spec]
 def mktuple.spec (a : i32) :
     Spec
@@ -1735,6 +1735,25 @@ def multiline : Unit := ()
 @[spec]
 def test_before_verbatim_multi_line (x : u8) : RustM u8 := do (pure (32 : u8))
 
+def NULL_CHAR : Char := '\u0000'
+
+--  Test string literals with escape sequences
+@[spec]
+def string_escapes (_ : rust_primitives.hax.Tuple0) :
+    RustM rust_primitives.hax.Tuple0 := do
+  let _empty : String := \"\";
+  let _plain : String := \"hello world\";
+  let _with_quotes : String := \"she said \\\"hello\\\"\";
+  let _with_single_quote : String := \"it\\'s fine\";
+  let _with_backslash : String := \"path\\\\to\\\\file\";
+  let _with_newline : String := \"line1\\nline2\";
+  let _with_tab : String := \"col1\\tcol2\";
+  let _with_carriage_return : String := \"before\\rafter\";
+  let _mixed : String := \"say \\\"hello\\\"\\nand\\t\\'goodbye\\'\\\\end\";
+  let _carriage_return : String := \"carriage\\rreturn\";
+  let _control_chars : String := \"null\\x00byte bell\\x07char font\\x1b[0mreset\";
+  (pure rust_primitives.hax.Tuple0.mk)
+
 end lean_tests
 
 
@@ -2087,4 +2106,4 @@ instance Impl_1 : T2 S where
 
 end lean_tests.traits.associated_types
 
-'''
+"""

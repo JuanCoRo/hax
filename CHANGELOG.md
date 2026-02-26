@@ -95,6 +95,7 @@ Changes to the Lean backend:
  - Add `hax_lib::lean::proof` attribute (#1831)
  - Add support for `#[hax_lib::opaque]` (#1846)
  - Turn rejection phase into a transformation phase (#1840)
+ - Fix string escaping (#1834)
 
 Miscellaneous:
 - Reserve extraction folder for auto-generated files in Lean examples (#1754)

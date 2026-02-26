@@ -281,6 +281,27 @@ impl LeanPrinter {
             path,
         })
     }
+
+    /// Escape a string for use in Lean string literals.
+    /// Handles newlines, quotes, backslashes, and other special characters.
+    fn escape_string(&self, s: &str) -> String {
+        let mut result = String::with_capacity(s.len());
+        for c in s.chars() {
+            match c {
+                '"' => result.push_str("\\\""),
+                '\'' => result.push_str("\\'"),
+                '\\' => result.push_str("\\\\"),
+                '\n' => result.push_str("\\n"),
+                '\r' => result.push_str("\\r"),
+                '\t' => result.push_str("\\t"),
+                c if c.is_ascii_control() => {
+                    result.push_str(&format!("\\x{:02x}", c as u8));
+                }
+                c => result.push(c),
+            }
+        }
+        result
+    }
 }
 
 /// Render parameters, adding a line after each parameter
@@ -1293,7 +1314,7 @@ const _: () = {
 
         fn literal(&self, literal: &Literal) -> DocBuilder<A> {
             docs![match literal {
-                Literal::String(symbol) => format!("\"{symbol}\""),
+                Literal::String(symbol) => format!("\"{}\"", self.escape_string(symbol)),
                 Literal::Char(c) => format!("'{c}'"),
                 Literal::Bool(b) => format!("{b}"),
                 Literal::Int {
