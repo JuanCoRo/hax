@@ -73,3 +73,20 @@ fn binop_resugarings(x: u32) -> u32 {
     let lshift = div << x;
     x
 }
+
+const NULL_CHAR: char = '\0';
+
+/// Test string literals with escape sequences
+fn string_escapes() {
+    let _empty = "";
+    let _plain = "hello world";
+    let _with_quotes = "she said \"hello\"";
+    let _with_single_quote = "it's fine";
+    let _with_backslash = "path\\to\\file";
+    let _with_newline = "line1\nline2";
+    let _with_tab = "col1\tcol2";
+    let _with_carriage_return = "before\rafter";
+    let _mixed = "say \"hello\"\nand\t'goodbye'\\end";
+    let _carriage_return = "carriage\rreturn";
+    let _control_chars = "null\x00byte bell\x07char font\x1b[0mreset";
+}
