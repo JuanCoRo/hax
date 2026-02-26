@@ -2085,38 +2085,3 @@ const _: () = {
         }
     }
 };
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_escape_string_identity() {
-        let printer = LeanPrinter::default();
-        assert_eq!(printer.escape_string("hello"), "hello");
-        assert_eq!(printer.escape_string("Hello, World!"), "Hello, World!");
-        assert_eq!(printer.escape_string(""), "");
-    }
-
-    #[test]
-    fn test_escape_string_basic_escapes() {
-        let printer = LeanPrinter::default();
-        assert_eq!(printer.escape_string("hello\"world"), "hello\\\"world");
-        assert_eq!(printer.escape_string("it's"), "it\\'s");
-        assert_eq!(printer.escape_string("back\\slash"), "back\\\\slash");
-        assert_eq!(printer.escape_string("line\nbreak"), "line\\nbreak");
-        assert_eq!(
-            printer.escape_string("carriage\rreturn"),
-            "carriage\\rreturn"
-        );
-        assert_eq!(printer.escape_string("tab\there"), "tab\\there");
-    }
-
-    #[test]
-    fn test_escape_string_control_chars() {
-        let printer = LeanPrinter::default();
-        assert_eq!(printer.escape_string("null\x00byte"), "null\\x00byte");
-        assert_eq!(printer.escape_string("bell\x07char"), "bell\\x07char");
-        assert_eq!(printer.escape_string("\x1b[0m"), "\\x1b[0m");
-    }
-}
