@@ -3,16 +3,6 @@ attribute [grind =_] UInt16.le_ofNat_iff
 attribute [grind =_] UInt32.le_ofNat_iff
 attribute [grind =_] UInt64.le_ofNat_iff
 
-attribute [grind =] UInt8.le_iff_toNat_le
-attribute [grind =] UInt16.le_iff_toNat_le
-attribute [grind =] UInt32.le_iff_toNat_le
-attribute [grind =] UInt64.le_iff_toNat_le
-
-attribute [grind =] UInt8.lt_iff_toNat_lt
-attribute [grind =] UInt16.lt_iff_toNat_lt
-attribute [grind =] UInt32.lt_iff_toNat_lt
-attribute [grind =] UInt64.lt_iff_toNat_lt
-
 theorem UInt64.toNat_mul_of_lt {a b : UInt64} (h : a.toNat * b.toNat < 2 ^ 64) :
     (a * b).toNat = a.toNat * b.toNat := by
   rw [UInt64.toNat_mul, Nat.mod_eq_of_lt h]
